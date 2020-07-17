@@ -1,11 +1,14 @@
 package com.example.demo.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 
 @Entity
@@ -16,6 +19,9 @@ public class Categoria implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
+	
+	@ManyToMany(mappedBy = "categorias")
+	private List<Filme> filmes = new ArrayList<>();
 	
 	public Categoria() {
 	
@@ -45,6 +51,16 @@ public class Categoria implements Serializable {
 	}
 	
 	
+	public List<Filme> getFilmes() {
+		return filmes;
+	}
+
+	public void setFilmes(List<Filme> filmes) {
+		this.filmes = filmes;
+	}
+	
+
+	
 	@Override
 	public int hashCode() {
 		// TODO Auto-generated method stub
@@ -71,6 +87,6 @@ public class Categoria implements Serializable {
 			return false;
 		return true;
 	}
-	
+
 	
 }
