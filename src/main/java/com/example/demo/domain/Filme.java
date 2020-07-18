@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 public class Filme implements Serializable {
@@ -23,6 +25,7 @@ public class Filme implements Serializable {
 	private String nome;
 	private Double preço;
 	
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "FILME_CATEGORIA",
 			joinColumns = @JoinColumn(name = "filme_id"),
